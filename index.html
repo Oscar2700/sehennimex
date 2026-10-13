@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+background: #111;
+color: white;
+font-family: Arial, sans-serif;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+h1 {
+text-align: center;
+font-size: 2rem;
+}
+
+#randomPicture {
+display: block;
+max-width: 100%;
+max-height: 70vh;
+object-fit: contain;
+border-radius: 12px;
+box-shadow: 0 0 25px #000;
+}
+
+button {
+margin-top: 20px;
+padding: 12px 24px;
+border: none;
+border-radius: 8px;
+background: #5865f2;
+color: white;
+font-size: 16px;
+cursor: pointer;
+}
+
+button:hover {
+background: #4752c4;
+}
+</style>
+</head>
+
+<body>
+<h1>Random Picture Generator</h1>
+
+<img id="randomPicture" alt="Randomly selected picture">
+
+<button onclick="showRandomPicture()">
+Show Another Picture
+</button>
+
+<script>
+const pictures = [
+"images/picture1.jpg",
+"images/picture2.png",
+"images/picture3.jpg"
+];
+
+let previousIndex = -1;
+
+function showRandomPicture() {
+let randomIndex;
+
+if (pictures.length === 1) {
+randomIndex = 0;
+} else {
+do {
+randomIndex = Math.floor(
+Math.random() * pictures.length
+);
+} while (randomIndex === previousIndex);
+}
+
+previousIndex = randomIndex;
+
+document.getElementById("randomPicture").src =
+pictures[randomIndex];
+}
+
+showRandomPicture();
+</script>
+</body>
+</html>
